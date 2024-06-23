@@ -11,7 +11,11 @@
   outputs = { self, nixpkgs, ... }@inputs:
   let
     user = "he";
-    specialArgs = { inherit inputs user; };
+    base = {
+      path = builtins.toString ./.;
+      modules = builtins.toString ./. + "/modules";
+    };
+    specialArgs = { inherit inputs user base; };
   in {
     nixosModules = import ./modules/nixos;
     homeModules = import ./modules/home; 

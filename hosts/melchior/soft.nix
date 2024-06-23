@@ -1,17 +1,12 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, inputs, user, ... }:
 
 let
-  pwd = toString ./.;
-  secretsPath = "${pwd}/.env";
-  env = import ./.env/default.nix;
+  secretsPath = toString ./. + "/.env";
+  env = import .env/default.nix;
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hard.nix
       inputs.home-manager.nixosModules.default
       inputs.agenix.nixosModules.default
@@ -21,14 +16,14 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  environment.variables.RULES = "${toString secretsPath}/secrets.nix";
+  environment.variables.RULES = "${secretsPath}/secrets.nix";
 
   age = {
     secrets = {
       "wireless".file = "${secretsPath}/wireless.age";
     };
     identityPaths = [
-      "/home/he/.ssh/id_ed25519_age"
+      "/home/${user}/.ssh/id_ed25519_age"
     ]; 
   };
 
@@ -95,8 +90,7 @@ in
     users = {
       ${user} = {
         imports = [
-          (./user.nix)
-         # inputs.self.outputs.homeManagerModules.default
+          ./user.nix
         ];
       };
     };
