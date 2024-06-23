@@ -2,14 +2,16 @@
 .
 ├── flake.lock
 ├── flake.nix
+├── .gitignore
 ├── hosts
-│   └── melchior
+│   └── [host]
 │       ├── hard.nix
 │       ├── soft.nix
 │       └── user.nix
 ├── modules
 │   ├── home
-│   │   └── default.nix
+│   │   ├── .config
+│   │   └── shell.nix
 │   └── nixos
 │       ├── default.nix
 │       └── nvidia.nix
