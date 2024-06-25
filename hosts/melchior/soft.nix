@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, user, ... }:
+{ config, pkgs, inputs, user, base, ... }:
 
 let
   env = inputs.env;
@@ -7,6 +7,7 @@ in
   imports =
     [
       ./hard.nix
+      "${base.modules}/nixos/nvidia.nix"
       inputs.home-manager.nixosModules.default
     ];
 
