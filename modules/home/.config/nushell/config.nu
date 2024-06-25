@@ -893,3 +893,11 @@ $env.config = {
         }
     ]
 }
+
+source ~/.config/nushell/zoxide.nu
+source ~/.config/nushell/env.nu
+alias z = zoxide
+
+alias vi  = nvim
+alias vim = nvim
+
