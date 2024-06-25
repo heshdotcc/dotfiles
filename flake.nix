@@ -1,18 +1,17 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    agenix.url = "github:yaxitech/ragenix";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    env.url = "git+file:///home/he/.crypt"; 
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
   let
     user = "he";
     base = {
-      path = builtins.toString ./.;
       modules = builtins.toString ./. + "/modules";
     };
     specialArgs = { inherit inputs user base; };
