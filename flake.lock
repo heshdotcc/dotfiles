@@ -2,11 +2,11 @@
   "nodes": {
     "env": {
       "locked": {
-        "lastModified": 1719278085,
-        "narHash": "sha256-JA7uBFgFZuLqboFywrgLV/8xQuuNNtiUsfpXPSH2pVk=",
+        "lastModified": 1719366240,
+        "narHash": "sha256-6oJN8uv9w3zBZpDvHTrjO0q15Pf51PyAib0scPk7VzM=",
         "ref": "refs/heads/main",
-        "rev": "0810401003865ed96fb5338169f7eefe093f906e",
-        "revCount": 2,
+        "rev": "7c33b1caec05e54aa3d73e95471c96f0d071f113",
+        "revCount": 3,
         "type": "git",
         "url": "file:///home/he/.crypt"
       },
