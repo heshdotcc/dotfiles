@@ -6,9 +6,15 @@
 
   hardware = {
     graphics.enable = true;
-    opengl.enable = true;
+    opengl = {
+      enable = true;
+      driSupport32Bit = true;
+    };
     nvidia = {
+      nvidiaPersistenced = true;
+      modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable;
+      open = false;
     };
     nvidia-container-toolkit.enable = true;
   };
