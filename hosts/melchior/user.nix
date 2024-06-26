@@ -39,6 +39,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     SHELL = "${pkgs.nushell}/bin/nu";
+    KUBECONFIG = "/home/${user}/.config/kube/config";
   };
 
   programs.home-manager.enable = true;
