@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  containerdTemplate = pkgs.writeText "config.toml.tmpl" (lib.readFile ./config.toml.tmpl);
+in
 {
   services.k3s = {
     enable = true;
@@ -14,9 +17,11 @@
     k3s
     kubectl
     kubernetes-helm
-    runc
-    nvidia-container-toolkit
     libnvidia-container
+    nerdctl
+    nvidia-container-toolkit
+    nvidia-podman
+    runc
   ];  
 
   environment.etc."k3s/containerd/config.toml.tmpl".text = ''
@@ -49,5 +54,13 @@
       enable = true;
       enableNvidia = true;
     };
+    podman = {
+      enable = true;
+      enableNvidia = true;
+    };
   };
+
+  system.activationScripts.writeContainerdConfigTemplate = ''
+    cp ${containerdTemplate} /var/lib/rancher/k3s/agent/etc/containerd/config.toml.tmpl
+  '';
 }
