@@ -894,6 +894,7 @@ $env.config = {
     ]
 }
 
+zoxide init nushell | save ~/.config/nushell/env.nu
 source ~/.config/nushell/zoxide.nu
 source ~/.config/nushell/env.nu
 alias z = zoxide
