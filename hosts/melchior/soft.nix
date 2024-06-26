@@ -7,7 +7,7 @@ in
   imports =
     [
       ./hard.nix
-      "${base.modules}/nixos/k3s.nix"
+      "${base.modules}/nixos/virt.nix"
       "${base.modules}/nixos/nvidia.nix"
       inputs.home-manager.nixosModules.default
     ];
