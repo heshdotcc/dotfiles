@@ -7,6 +7,7 @@ in
   imports =
     [
       ./hard.nix
+      "${base.modules}/nixos/k3s.nix"
       "${base.modules}/nixos/nvidia.nix"
       inputs.home-manager.nixosModules.default
     ];
@@ -32,7 +33,7 @@ in
   users.users.${user} = {
     isNormalUser = true;
     description = "${user}";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       tmux
     ];
