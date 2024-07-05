@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, user, base, ... }:
+{ config, pkgs, user, base, ... }:
 
 {
   imports = [
@@ -18,15 +18,12 @@
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    broot
     git
     htop
     nushell
     ripgrep
     sops
     tree
-    zoxide
-    inputs.nvim.packages.${pkgs.system}.nvim
   ];
 
   home.file = {
@@ -37,7 +34,7 @@
   };
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "vim";
     SHELL = "${pkgs.nushell}/bin/nu";
     KUBECONFIG = "/home/${user}/.config/kube/config";
   };

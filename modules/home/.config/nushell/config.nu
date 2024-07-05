@@ -892,6 +892,7 @@ $env.config = {
             event: { edit: selectall }
         }
     ]
+<<<<<<< HEAD
 }
 
 zoxide init nushell | save ~/.config/nushell/env.nu
@@ -902,3 +903,6 @@ alias z = zoxide
 alias vi  = nvim
 alias vim = nvim
 
+=======
+}
+>>>>>>> parent of b4db4f8 (feat: set up neovim flake & zoxide for nushell)

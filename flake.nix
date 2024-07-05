@@ -1,8 +1,10 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    nvim.url = "github:heshdotcc/nvim-flake";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     env.url = "git+file:///home/he/.crypt"; 
   };
 
@@ -13,9 +15,7 @@
       modules = builtins.toString ./. + "/modules";
     };
     specialArgs = { inherit inputs user base; };
-  in
-  {
-    nixpkgs.overlays = [ inputs.nvim.overlay.default ];
+  in {
     nixosModules = import ./modules/nixos;
     homeModules = import ./modules/home; 
     nixosConfigurations = { 
@@ -23,13 +23,8 @@
         inherit specialArgs;
         modules = [
           ./hosts/melchior/soft.nix
-          inputs.home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = specialArgs;
-            };
+          inputs.home-manager.nixosModules.home-manager {
+            home-manager.extraSpecialArgs = specialArgs;
           }
         ];
       };

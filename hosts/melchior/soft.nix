@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, user, base, ... }:
+{ config, pkgs, inputs, user, ... }:
 
 let
   env = inputs.env;
@@ -7,8 +7,11 @@ in
   imports =
     [
       ./hard.nix
+<<<<<<< HEAD
       "${base.modules}/nixos/virt.nix"
       "${base.modules}/nixos/nvidia.nix"
+=======
+>>>>>>> parent of b4db4f8 (feat: set up neovim flake & zoxide for nushell)
       inputs.home-manager.nixosModules.default
     ];
 
