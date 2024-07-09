@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, user, base, ... }:
+{ pkgs, base, user, ... }:
 
 {
   imports = [
@@ -25,7 +25,6 @@
     sops
     tree
     zoxide
-    inputs.ownpkgs.packages.${pkgs.system}.lunarvim
   ];
 
   home.file = {
