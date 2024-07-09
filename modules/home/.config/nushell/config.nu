@@ -895,7 +895,6 @@ $env.config = {
 }
 
 source ~/.config/nushell/env.nu
-zoxide init nushell | save ~/.config/nushell/zoxide.nu
 
 $env.EDITOR = lvim
 $env.KUBECONFIG = "/home/he/.config/kube/config"
