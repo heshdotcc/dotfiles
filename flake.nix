@@ -5,10 +5,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    env.url = "git+file:///home/he/.crypt"; 
+    ownpkgs.url = "github:heshdotcc/ownpkgs";
+    env.url = "git+file:///home/he/crypt"; 
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, ... } @inputs:
   let
     user = "he";
     base = {
@@ -16,10 +17,11 @@
     };
     specialArgs = { inherit inputs user base; };
   in {
+    nixpkgs.overlays = [ inputs.ownpkgs.nvim.overlays.default ];
     nixosModules = import ./modules/nixos;
     homeModules = import ./modules/home; 
     nixosConfigurations = { 
-      melchior = nixpkgs.lib.nixosSystem {
+      melchior = inputs.nixpkgs.lib.nixosSystem {
         inherit specialArgs;
         modules = [
           ./hosts/melchior/soft.nix

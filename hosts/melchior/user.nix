@@ -1,4 +1,4 @@
-{ config, pkgs, user, base, ... }:
+{ config, pkgs, inputs, user, base, ... }:
 
 {
   imports = [
@@ -24,6 +24,8 @@
     ripgrep
     sops
     tree
+    zoxide
+    inputs.ownpkgs.packages.${pkgs.system}.nvim
   ];
 
   home.file = {
