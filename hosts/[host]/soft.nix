@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, base, user, ... }:
+{ pkgs, inputs, base, host, user, ... }:
 
 let
   env = inputs.env;
@@ -6,21 +6,20 @@ in
 {
   imports =
     [
-      ./hard.nix
+      inputs.home-manager.nixosModules.default
       "${base.modules}/nixos/nvidia.nix"
       "${base.modules}/nixos/virt.nix"
-      inputs.home-manager.nixosModules.default
     ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking = { 
-    hostName = "melchior";
+  networking = {
+    hostName = host;
   };
 
-  time.timeZone = env.timezone; 
-  
+  time.timeZone = env.timezone;
+
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = env.extraLocaleSettings;
@@ -51,10 +50,7 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-  ];
+  environment.systemPackages = with pkgs; [ vim wget ];
 
   programs = {
     nh = {
@@ -72,7 +68,7 @@ in
     extraConfig = env.openssh_extra;
   };
 
-  networking.firewall.allowedTCPPorts = env.tcp_ports;
+  networking.firewall.allowedTCPPorts = env.hosts.${host}.tcp_ports;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

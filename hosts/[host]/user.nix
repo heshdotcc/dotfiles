@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, user, base, ... }:
+{ pkgs, base, user, ... }:
 
 {
   imports = [
@@ -20,12 +20,12 @@
   home.packages = with pkgs; [
     git
     htop
+    lunarvim
     nushell
     ripgrep
     sops
     tree
     zoxide
-    inputs.ownpkgs.packages.${pkgs.system}.lunarvim
   ];
 
   home.file = {

@@ -1,35 +1,34 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ownpkgs.url = "github:heshdotcc/ownpkgs";
-    env.url = "git+file:///home/he/crypt"; 
+    nixpkgs.url      = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    ownpkgs.url      = "github:heshdotcc/ownpkgs";
+    env.url          = "github:heshdotcc/crypt";
   };
 
-  outputs = { self, ... } @inputs:
+  outputs = { self, nixpkgs, ... } @inputs:
   let
+    base = { modules = builtins.toString ./. + "/modules"; };
+    hosts = builtins.attrNames inputs.env.hosts;
     user = "he";
-    base = {
-      modules = builtins.toString ./. + "/modules";
+    generateHostConfig = host:
+    let
+      specialArgs = { inherit inputs base host user; };
+    in
+    {
+      inherit specialArgs;
+      modules = [
+        (./hosts + "/[host]")
+        inputs.home-manager.nixosModules.home-manager {
+          home-manager.extraSpecialArgs = specialArgs;
+        }
+      ];
     };
-    specialArgs = { inherit inputs user base; };
-  in {
-    nixpkgs.overlays = [ inputs.ownpkgs.nvim.overlays.default ];
-    nixosModules = import ./modules/nixos;
-    homeModules = import ./modules/home; 
-    nixosConfigurations = { 
-      melchior = inputs.nixpkgs.lib.nixosSystem {
-        inherit specialArgs;
-        modules = [
-          ./hosts/melchior/soft.nix
-          inputs.home-manager.nixosModules.home-manager {
-            home-manager.extraSpecialArgs = specialArgs;
-          }
-        ];
-      };
-    };
+  in
+  {
+    nixosConfigurations = builtins.listToAttrs (builtins.map (host: {
+      name = host;
+      value = nixpkgs.lib.nixosSystem (generateHostConfig host);
+    }) hosts);
   };
 }
