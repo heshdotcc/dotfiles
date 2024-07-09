@@ -14,24 +14,6 @@
         "url": "file:///home/he/crypt"
       }
     },
-    "flake-parts": {
-      "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib"
-      },
-      "locked": {
-        "lastModified": 1715865404,
-        "narHash": "sha256-/GJvTdTpuDjNn84j82cU6bXztE0MSkdnTWClUCRub78=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "8dc45382d5206bd292f9c2768b8058a8fd8311d9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -65,25 +47,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "gen-luarc": {
-      "inputs": {
-        "flake-parts": "flake-parts",
-        "nixpkgs": "nixpkgs_3"
-      },
-      "locked": {
-        "lastModified": 1717108591,
-        "narHash": "sha256-Sn6jrh9Nqp5UKJzNT0rg/DQCJCpFs/d+RM2/iENPpBo=",
-        "owner": "mrcjkb",
-        "repo": "nix-gen-luarc-json",
-        "rev": "39704e58b5227a82a14a00f5912e4bfccfa2b687",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mrcjkb",
-        "repo": "nix-gen-luarc-json",
         "type": "github"
       }
     },
@@ -123,18 +86,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-lib": {
-      "locked": {
-        "lastModified": 1714640452,
-        "narHash": "sha256-QBx10+k6JWz6u7VsohfSw8g8hjdBZEf8CFzXH1/1Z94=",
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/50eb7ecf4cd0a5756d7275c8ba36790e5bd53e33.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/50eb7ecf4cd0a5756d7275c8ba36790e5bd53e33.tar.gz"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1720368505,
@@ -153,32 +104,16 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1716948383,
-        "narHash": "sha256-SzDKxseEcHR5KzPXLwsemyTR/kaM9whxeiJohbL04rs=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "ad57eef4ef0659193044870c731987a6df5cf56b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_4": {
-      "locked": {
-        "lastModified": 1717602782,
-        "narHash": "sha256-pL9jeus5QpX5R+9rsp3hhZ+uplVHscNJh8n8VpqscM0=",
+        "lastModified": 1720368505,
+        "narHash": "sha256-5r0pInVo5d6Enti0YwUSQK4TebITypB42bWy5su3MrQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e8057b67ebf307f01bdcc8fba94d94f75039d1f6",
+        "rev": "ab82a9612aa45284d4adf69ee81871a389669a9e",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -186,12 +121,11 @@
     "nvim": {
       "inputs": {
         "flake-utils": "flake-utils_2",
-        "gen-luarc": "gen-luarc",
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-0cUvSflTKACpPqzVxP/9YDRy1h+xuaHHu4cRD2j6PBs=",
+        "narHash": "sha256-K+70zLCp1e5t5p91aTYTzmbwmGKYwcgHsY7bfDpO/8M=",
         "path": "./pkgs/neovim",
         "type": "path"
       },
@@ -207,11 +141,11 @@
         "nvim": "nvim"
       },
       "locked": {
-        "lastModified": 1720485833,
-        "narHash": "sha256-shNHQtdTWbXZP+2zJqaLj4K9S+uoe9MN5F9gK9g7acA=",
+        "lastModified": 1720492087,
+        "narHash": "sha256-8RMsxvsQ8QDDBNhTljaWYVUC3tzzoNOjIwMpR5yrSi8=",
         "owner": "heshdotcc",
         "repo": "ownpkgs",
-        "rev": "b952cd166fa2a95976a51e271a92cecba0d5b8a9",
+        "rev": "490f2618b146232135b65c27a725f97f2aa1d3ed",
         "type": "github"
       },
       "original": {
