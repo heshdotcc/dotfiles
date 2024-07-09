@@ -25,7 +25,7 @@
     sops
     tree
     zoxide
-    inputs.ownpkgs.packages.${pkgs.system}.nvim
+    inputs.ownpkgs.packages.${pkgs.system}.lunarvim
   ];
 
   home.file = {
@@ -36,7 +36,7 @@
   };
 
   home.sessionVariables = {
-    EDITOR = "vim";
+    EDITOR = "lvim";
     SHELL = "${pkgs.nushell}/bin/nu";
     KUBECONFIG = "/home/${user}/.config/kube/config";
   };
