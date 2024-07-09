@@ -145,7 +145,7 @@ let light_theme = {
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
-    show_banner: true # true or false to enable or disable the welcome banner at startup
+    show_banner: false # true or false to enable or disable the welcome banner at startup
 
     ls: {
         use_ls_colors: true # use the LS_COLORS environment variable to colorize output
@@ -892,17 +892,39 @@ $env.config = {
             event: { edit: selectall }
         }
     ]
-<<<<<<< HEAD
 }
 
-zoxide init nushell | save ~/.config/nushell/env.nu
-source ~/.config/nushell/zoxide.nu
+# Source the environment file
 source ~/.config/nushell/env.nu
+
+# Initialize zoxide for Nushell
+zoxide init nushell | save ~/.config/nushell/zoxide.nu
+#source ~/.config/nushell/zoxide.nu
+
 alias z = zoxide
 
 alias vi  = nvim
 alias vim = nvim
 
-=======
+alias k    = kubectl
+alias kga  = kubectl get all
+alias kp   = kubectl get pods
+alias kgp  = kubectl get pods -o yaml
+alias kdp  = kubectl describe pods
+alias ks   = kubectl get service
+alias kgs  = kubectl get service -o yaml
+alias kgd  = kubectl get deployment
+alias kgds = kubectl get daemonset
+alias kdds = kubectl describe daemonset
+
+$env.KUBECONFIG = "/home/he/.config/kube/config"
+
+let env KUBECONFIG = "/home/he/.config/kube/config"
+
+def klog [namespace] {
+  let namespace_flag = if $namespace != '' { '--namespace ' + $namespace } else { '' }
+  let pod_name = (kubectl get pods $namespace_flag -o jsonpath="{.items[0].metadata.name}")
+  kubectl logs $pod_name $namespace_flag
 }
->>>>>>> parent of b4db4f8 (feat: set up neovim flake & zoxide for nushell)
+
+
