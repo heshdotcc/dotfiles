@@ -20,7 +20,7 @@
       config = {
         inherit specialArgs;
         modules = [
-          ./hosts/host
+          (./hosts + "/[host]")
           inputs.home-manager.nixosModules.home-manager {
             home-manager.extraSpecialArgs = specialArgs;
           }
