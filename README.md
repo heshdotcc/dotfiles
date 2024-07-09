@@ -5,6 +5,7 @@
 ├── .gitignore
 ├── hosts
 │   └── [host]
+│       ├── default.nix
 │       ├── hard.nix
 │       ├── soft.nix
 │       └── user.nix
