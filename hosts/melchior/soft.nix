@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, user, ... }:
+{ config, pkgs, inputs, base, user, ... }:
 
 let
   env = inputs.env;
@@ -7,11 +7,8 @@ in
   imports =
     [
       ./hard.nix
-<<<<<<< HEAD
-      "${base.modules}/nixos/virt.nix"
       "${base.modules}/nixos/nvidia.nix"
-=======
->>>>>>> parent of b4db4f8 (feat: set up neovim flake & zoxide for nushell)
+      "${base.modules}/nixos/virt.nix"
       inputs.home-manager.nixosModules.default
     ];
 
@@ -37,9 +34,7 @@ in
     isNormalUser = true;
     description = "${user}";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-      tmux
-    ];
+    shell = "${pkgs.nushell}/bin/nu";
     openssh.authorizedKeys.keys = env.pubkeys;
   };
 
