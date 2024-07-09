@@ -894,37 +894,9 @@ $env.config = {
     ]
 }
 
-# Source the environment file
 source ~/.config/nushell/env.nu
-
-# Initialize zoxide for Nushell
 zoxide init nushell | save ~/.config/nushell/zoxide.nu
-#source ~/.config/nushell/zoxide.nu
 
-alias z = zoxide
-
-alias vi  = nvim
-alias vim = nvim
-
-alias k    = kubectl
-alias kga  = kubectl get all
-alias kp   = kubectl get pods
-alias kgp  = kubectl get pods -o yaml
-alias kdp  = kubectl describe pods
-alias ks   = kubectl get service
-alias kgs  = kubectl get service -o yaml
-alias kgd  = kubectl get deployment
-alias kgds = kubectl get daemonset
-alias kdds = kubectl describe daemonset
-
+$env.EDITOR = lvim
 $env.KUBECONFIG = "/home/he/.config/kube/config"
-
-let env KUBECONFIG = "/home/he/.config/kube/config"
-
-def klog [namespace] {
-  let namespace_flag = if $namespace != '' { '--namespace ' + $namespace } else { '' }
-  let pod_name = (kubectl get pods $namespace_flag -o jsonpath="{.items[0].metadata.name}")
-  kubectl logs $pod_name $namespace_flag
-}
-
 
