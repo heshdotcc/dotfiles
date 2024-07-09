@@ -18,5 +18,9 @@
       enable = true;
       mouse = true;
     };
+    zoxide = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
   };
 }
