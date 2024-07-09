@@ -20,6 +20,7 @@
   home.packages = with pkgs; [
     git
     htop
+    lunarvim
     nushell
     ripgrep
     sops
