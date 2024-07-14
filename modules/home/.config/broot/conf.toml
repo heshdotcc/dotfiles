@@ -1,0 +1,28 @@
+content_search_max_file_size = "10MB"
+enable_kitty_keyboard = false
+imports = ["verbs.hjson", {file = "skins/dark-blue.hjson", luma = ["dark", "unknown"]}, {file = "skins/white.hjson", luma = "light"}]
+lines_after_match_in_preview = 1
+lines_before_match_in_preview = 1
+modal = true
+show_selection_mark = true
+verbs = []
+
+[skin]
+
+[special_paths]
+[special_paths."/media"]
+list = "never"
+sum = "never"
+
+[special_paths.trav]
+list = "always"
+show = "always"
+sum = "never"
+
+[special_paths."~/.config"]
+show = "always"
+
+[[verbs]]
+invocation = "edit"
+key = "e"
+execution = "lvim {file}"
