@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 let
   containerdTemplate = pkgs.writeText "config.toml.tmpl" (lib.readFile ./config.toml.tmpl);
@@ -13,48 +13,17 @@ in
   };
   
   environment.systemPackages = with pkgs; [
-    docker
     k3s
+    kns
     kubectl
     kubernetes-helm
-    libnvidia-container
-    nerdctl
-    nvidia-container-toolkit
-    nvidia-podman
+    kubevirt
+    docker
     runc
   ];  
 
-  environment.etc."k3s/containerd/config.toml.tmpl".text = ''
-    {{ template "base" . }}
-
-    [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.nvidia]
-      privileged_without_host_devices = false
-      runtime_engine = ""
-      runtime_root = ""
-      runtime_type = "io.containerd.runc.v2"
-  '';
-
-  systemd.services.k3s.path = with pkgs; [
-    nvidia-container-toolkit
-    libnvidia-container
-  ];
-
-  systemd.services.containerd.path = with pkgs; [
-    containerd
-    runc
-    nvidia-container-toolkit
-    libnvidia-container
-  ];
-
   virtualisation = {
-    containerd = {
-      enable = true;
-    };
     docker = {
-      enable = true;
-      enableNvidia = true;
-    };
-    podman = {
       enable = true;
       enableNvidia = true;
     };

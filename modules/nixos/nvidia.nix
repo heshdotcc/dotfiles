@@ -13,8 +13,12 @@
     nvidia = {
       nvidiaPersistenced = true;
       modesetting.enable = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
       open = false;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      powerManagement = {
+        enable = false;
+        finegrained = false;
+      };
     };
     nvidia-container-toolkit.enable = true;
   };
