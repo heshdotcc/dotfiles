@@ -3,7 +3,7 @@
     nixpkgs.url      = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     ownpkgs.url      = "github:heshdotcc/ownpkgs";
-    env.url          = "git+file:///home/he/crypt";
+    env.url          = "github:heshdotcc/crypt";
   };
 
   outputs = { self, nixpkgs, ... } @inputs:
